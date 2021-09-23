@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Portal} from "./stories/components/Portal";
+import {Modal} from "./stories/components/Modal";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div>
+            <button onClick={() => setOpen(true)}>show modal</button>
+            <Portal id="modal-root">
+                {open && <Modal onHide={() => setOpen(false)}/>}
+            </Portal>
+        </div>
+    );
 }
 
 export default App;
